@@ -115,7 +115,7 @@ function featureThoughts() {
 
       thoughtsAndEmotions.push({ thought: cleanValue, emotions: [] });
       localStorage.setItem("thoughtsAndEmotions", JSON.stringify(thoughtsAndEmotions));
-      
+
       thoughtInput.value = "";
       updateThoughtCounter();
     }
@@ -166,7 +166,7 @@ function thoughtsRecreateOnDocEmotions() {
           const saveCloud = cloudInZone
           saveCloud.classList.add("consumed");
           saveCloud.classList.remove("shiny");
-          
+
           let savedThoughtsJson = localStorage.getItem("savedThoughtsAndEmotions");
           savedThoughtsAndEmotions = JSON.parse(savedThoughtsJson) || [];
 
@@ -222,7 +222,6 @@ function thoughtsRecreateOnDocEmotions() {
 
 // ===== Creation ===== //
 function createFloatingClouds(input, container) {
-
   const cloud = document.createElement("div");
   cloud.classList.add("thought-cloud");
 
@@ -237,8 +236,6 @@ function createFloatingClouds(input, container) {
   const cloudRemoveButton = document.createElement("button");
   cloudRemoveButton.classList.add("cloud-remove-button");
   cloudRemoveButton.textContent = "X";
-
-
 
   cloudRemoveButton.addEventListener("click", () => {
     cloud.remove();
@@ -275,9 +272,7 @@ function cloudsSyncAnimation(scope) {
   const clouds = scope.querySelectorAll(".thought-cloud");
 
   if (clouds.length === 0) return;
-  clouds.forEach(cloud => cloud.classList.remove("float-cloud"));
-  clouds[0].getBoundingClientRect();
-  clouds.forEach(cloud => cloud.classList.add("float-cloud"));
+  reflowAnimation(clouds, "float-cloud");
 }
 function createEmotions() {
 
@@ -503,9 +498,7 @@ function emotionRebuild(emotionBoxes, visibility) {
     emotionBoxes[emotionNumber].style.animation = "";
     emotionBoxes[emotionNumber].classList.remove("consumed");
 
-    emotionBoxes[emotionNumber].classList.remove("pulse");
-    emotionBoxes[emotionNumber].getBoundingClientRect();
-    emotionBoxes[emotionNumber].classList.add("pulse");
+    reflowAnimation(emotionBoxes[emotionNumber], "pulse");
 
     emotionBoxes[emotionNumber].style.top = emotionBoxes[emotionNumber].dataset.positionTop;
     emotionBoxes[emotionNumber].style.left = emotionBoxes[emotionNumber].dataset.positionLeft;
@@ -736,9 +729,7 @@ function consumeEmotion() {
   const currentThoughtEmotions = thoughtsAndEmotions[cloudReadyToEat.dataset.thoughtNumber].emotions
 
   if (cloudReadyToEat) {
-    cloudReadyToEat.classList.remove("shiny");
-    cloudReadyToEat.getBoundingClientRect();   // force reflow
-    cloudReadyToEat.classList.add("shiny");
+    reflowAnimation(cloudReadyToEat, "shiny");
 
     currentThoughtEmotions.push(emotionTextCollected);
     localStorage.setItem("thoughtsAndEmotions", JSON.stringify(thoughtsAndEmotions));
@@ -779,7 +770,13 @@ function recreateEmotions() {
   }
   createEmotions();
 }
+function reflowAnimation(target, animationClass) {
+  const elements = target instanceof Element ? [target] : [...target];
 
+  elements.forEach(el => el.classList.remove(animationClass));
+  elements[0].getBoundingClientRect();
+  elements.forEach(el => el.classList.add(animationClass));
+}
 
 // ----------------------------------- INITIALIZE ----------------------------------- //
 function init() {
