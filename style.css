@@ -116,7 +116,7 @@ body {
 
 /* ========================= SCREEN 2 ========================= */
 .screen-2-thoughts {
-  background-image: url("assets/images/ai-generated/thoughts-background.png");
+  background-image: url("assets/images/ai-generated/main-background.png");
   display: flex;
   flex-direction: column;
 }
@@ -414,7 +414,7 @@ body {
 
 /* ========================= SCREEN 3 ========================= */
 .screen-3-emotions {
-  background-image: url("assets/images/ai-generated/thoughts-background.png");
+  background-image: url("assets/images/ai-generated/main-background.png");
 }
 
 .screen-3-emotions .thought-cloud {
@@ -777,7 +777,7 @@ body {
 
 /* ========================= SCREEN 4 ========================= */
 .screen-4-analyze {
-  background-image: url("assets/images/ai-generated/thoughts-background.png");
+  background-image: url("assets/images/ai-generated/main-background.png");
 }
 
 .screen-4-analyze .home-colored-button {
