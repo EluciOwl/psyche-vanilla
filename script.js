@@ -34,6 +34,7 @@ let savedThoughtsAndEmotions = [];
 const CLOUD_TOP_SPACING = 0;
 const CLOUD_LEFT_SPACING = 15;
 const CLOUD_GAP = 25;
+
 // position on specific box
 let offsetX = 0;
 let offsetY = 0;
@@ -51,9 +52,8 @@ let isDragging = false;
 const DEFAULT_CUTOFF = 7;
 let myBarChart = null;
 
-
 // ----------------------------------- FUNCTIONS ----------------------------------- //
-// ===== Naviagtions ===== //
+// ===== Navigations ===== //
 function menuNavigation() {
   const homeButton = document.getElementById("home-button");
   if (homeButton) {
@@ -120,7 +120,6 @@ function featureThoughts() {
 
     thoughtsAndEmotions.forEach(entry => createFloatingClouds(entry.thought, thoughtsContainer));
 
-    // Press Enter -> thought counter + 1, create cloud
     thoughtInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") addThought();
     });
@@ -542,17 +541,12 @@ function moveObject(move) {
   })
 }
 function dropObjectCloud(offCloud, dropZone, releaseButton, activeClass) {
-  // when I'm not holding that one klick anymore, then release the cloud
   document.addEventListener(offCloud, (event) => {
-
-    // it's like vaidating a valid ticket
-    // When no Cloud -> return
     if (!isDragging || !activeObject.classList.contains("thought-cloud")) return;
 
     isDragging = false;
     activeObject.style.cursor = "grab";
 
-    // guard because emotions without zone! --> fixing that later hihi
     if (!dropZone) return;
 
     function invadeZoneCloud(indicatorIsInZone) {
@@ -575,12 +569,12 @@ function dropObjectCloud(offCloud, dropZone, releaseButton, activeClass) {
         const centerY = rectCloudDropZone.top + (rectCloudDropZone.height / 2);
 
 
-        // centering
         cloudInZone.classList.remove("float-cloud")
 
         const rectThoughtsPanel = cloudsContainer.getBoundingClientRect();
         cloudInZone.style.left = ((centerX - rectThoughtsPanel.left) / rectThoughtsPanel.width) * 100 + "%";
         cloudInZone.style.top = ((centerY - rectThoughtsPanel.top) / rectThoughtsPanel.height) * 100 + "%";
+        // centering
         cloudInZone.style.transform = "translate(-50%, -50%)";
 
         resetCloudLayout();
@@ -637,14 +631,12 @@ function hoverSparkleEffect(scope, sparkleing, color) {
   sparkleing.addEventListener("mouseenter", () => {
     sparkleInterval = setInterval(() => {
       const particleDot = document.createElement("div");
-      // give particleDot the class: "particle" used in style.css
       particleDot.classList.add("particle")
-      // create position of particles randomly 0-100% -> horizontal 
+
+      // spread particles randomly across the width, rising from the bottom
       particleDot.style.left = Math.random() * 100 + "%";
-      // particles rise from bottom
       particleDot.style.bottom = "0px";
       particleDot.style.background = color;
-      // ad it to stage
       sparkleing.appendChild(particleDot);
       setTimeout(() => particleDot.remove(), 1000);
     }, 50);
