@@ -407,3 +407,14 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 - **🔍**: `moveObject()` and `dropObjectEmotion()` were registered at the end of `createEmotions()`. `recreateEmotions()` calls `createEmotions()` again, but listeners on `document` are never removed with the boxes, so they piled up.
 - **🔧**: Moved the four registration calls out of `createEmotions()` into `init()`, so they run exactly once per page load.
 - **💡**: Removing a DOM element removes its own listeners, but not the ones you attached to `document`. Anything registered on `document` belongs in setup code, never in a function that can run more than once.
+
+---
+
+### **`JS`** - Emotion counted multiple times
+
+- **🐛**: Dropping an emotion again during its fade animation counts it several times, chart totals too high.
+
+![emotion counted multiple times](bug-gifs/emotion-counted-multiple-times.gif)
+- **🔍**: The `consumed` class only starts the animation, the box stays draggable until `animationend`.
+- **🔧**: Skip the drop handler when the emotion already has the `consumed` class.
+- **💡**: An animation is not a state, guard on the state.

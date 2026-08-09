@@ -194,16 +194,16 @@ function thoughtsRecreateOnDocEmotions() {
       })
     }
 
-    for (let thoughtIndex  = 0; thoughtIndex  < thoughtsAndEmotions.length; thoughtIndex ++) {
+    for (let thoughtIndex = 0; thoughtIndex < thoughtsAndEmotions.length; thoughtIndex++) {
 
-      const cloud = createFloatingClouds(thoughtsAndEmotions[thoughtIndex ].thought, cloudsContainer);
-      cloud.dataset.thoughtNumber = thoughtIndex 
+      const cloud = createFloatingClouds(thoughtsAndEmotions[thoughtIndex].thought, cloudsContainer);
+      cloud.dataset.thoughtNumber = thoughtIndex
 
-      if (thoughtIndex  > 3) {
+      if (thoughtIndex > 3) {
         cloud.style.visibility = "hidden";
       }
 
-      positionObject(thoughtIndex , cloud, CLOUD_TOP_SPACING, CLOUD_LEFT_SPACING, CLOUD_GAP);
+      positionObject(thoughtIndex, cloud, CLOUD_TOP_SPACING, CLOUD_LEFT_SPACING, CLOUD_GAP);
 
       pressObject("mousedown", cloud);
       pressObject("touchstart", cloud);
@@ -599,7 +599,7 @@ function dropObjectEmotion(offEmotion) {
 
     activeObject.style.cursor = "grab"
 
-    if (cloudInZone && !isSaving) {
+    if (cloudInZone && !isSaving && !activeObject.classList.contains("consumed")) {
       if (isInZone(getPoint(event), cloudDropZone)) consumeEmotion();
     }
   })
