@@ -146,10 +146,8 @@ body {
 #thoughts-input-row {
   display: flex;
   justify-content: center;
-  justify-items: center;
   align-items: flex-end;
   gap: 5%;
-
 }
 
 #thought-counter {
@@ -162,8 +160,8 @@ body {
   padding: 0.75%;
 
   background:
-    linear-gradient(rgba(245, 4, 253, 0.05), rgba(255, 65, 246, 0.025)) padding-box,
-    linear-gradient(45deg, rgba(255, 127, 80, 0), hwb(290 11% 0% / 0.3), rgba(236, 93, 255, 0.1)) border-box;
+    linear-gradient(rgba(245, 4, 253, 0.05), rgba(255, 65, 246, 0.025)),
+    linear-gradient(45deg, rgba(255, 127, 80, 0), hwb(290 11% 0% / 0.3), rgba(236, 93, 255, 0.1));
 
   color: rgba(255, 166, 251, 0.75);
 }
@@ -195,7 +193,6 @@ body {
 }
 
 #thought-input {
-  background: transparent;
   font-size: 3.5vw;
   color: rgba(255, 166, 251, 0.75);
 
@@ -380,7 +377,7 @@ body {
 
   box-sizing: border-box;
   padding: 0;
-  border: 2px;
+  border: none;
 
   position: absolute;
   top: 7.5%;
@@ -461,7 +458,7 @@ body {
 
 #emotions-input {
 box-sizing: border-box;
-  flex: 100% 100% 0;
+  flex: 1 1 0;
   min-width: 0;
   width: auto;
   height: 100%;
@@ -604,7 +601,7 @@ box-sizing: border-box;
 
   box-sizing: border-box;
   padding: 0;
-  border: 2px;
+  border: none;
 
   position: absolute;
   top: 0%;
@@ -638,7 +635,7 @@ box-sizing: border-box;
 #drop-panel {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
   position: absolute;
@@ -648,8 +645,6 @@ box-sizing: border-box;
 
   height: 100vh;
   width: fit-content;
-
-  justify-content: flex-start;
 }
 
 #cloud-drop-zone {
@@ -679,10 +674,6 @@ box-sizing: border-box;
   bottom: 0%;
   right: 0%;
   transform: translateY(-5%);
-}
-
-.screen-3-emotions .thought-cloud {
-  position: absolute;
 }
 
 #cloud-move-button {
