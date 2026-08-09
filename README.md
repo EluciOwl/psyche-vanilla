@@ -42,9 +42,9 @@ v1.0.0 released. The vanilla version is feature-complete. A React rewrite is nex
 
 Documenting every bug I solve and what I learn from it → [Bug Log](bugs/BUGS.md)
 
-## 🗺️ Where this is going
+## 🗺️ How I planned it
 
-Here are a few ideas and features I'm working on.
+The whole app started as one big sketch. Most of this is built now.
 
 ![Psyche roadmap](ideas/psyche-roadmap-new.png)
 
