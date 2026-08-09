@@ -28,7 +28,6 @@ const sparkleEffekt = document.querySelector(".sparkle-effect");
 
 let thoughtsAndEmotions = [];
 let savedThoughtsAndEmotions = [];
-const consumedEmotion = [];
 
 
 // Start position -> clouds
@@ -196,17 +195,16 @@ function thoughtsRecreateOnDocEmotions() {
       })
     }
 
-    for (let thoughtCounter = 0; thoughtCounter < thoughtsAndEmotions.length; thoughtCounter++) {
+    for (let thoughtIndex  = 0; thoughtIndex  < thoughtsAndEmotions.length; thoughtIndex ++) {
 
-      const cloud = createFloatingClouds(thoughtsAndEmotions[thoughtCounter].thought, cloudsContainer);
-      cloud.dataset.thoughtNumber = thoughtCounter
+      const cloud = createFloatingClouds(thoughtsAndEmotions[thoughtIndex ].thought, cloudsContainer);
+      cloud.dataset.thoughtNumber = thoughtIndex 
 
-      if (thoughtCounter > 3) {
+      if (thoughtIndex  > 3) {
         cloud.style.visibility = "hidden";
       }
 
-      positionObject(thoughtCounter, cloud, CLOUD_TOP_SPACING, CLOUD_LEFT_SPACING, CLOUD_GAP);
-
+      positionObject(thoughtIndex , cloud, CLOUD_TOP_SPACING, CLOUD_LEFT_SPACING, CLOUD_GAP);
 
       pressObject("mousedown", cloud);
       pressObject("touchstart", cloud);
@@ -688,7 +686,6 @@ function consumeEmotion() {
 
   eatEmotion.addEventListener("animationend", () => {
     eatEmotion.style.visibility = "hidden";
-    consumedEmotion.push(emotionTextCollected);
   }, { once: true });
 
   if (currentThoughtEmotions.length >= 1) {
