@@ -50,20 +50,20 @@ thoughtTextCloud.textContent = thoughtInput.value;
 ### **`CSS`** - `doneButton` and input field are not adjusted
 - **🐛:** `doneButton` pushes the input field to the left.
 
-![done button no push](/bugs/bug-images/done-button-push-text-field.png)
+![done button no push](bug-images/done-button-push-text-field.png)
 
 - **🔍** all got `display: flex;` but no one got something like `position: absolute;`
 - **🔧:** using `position: absolute;` at `doneButton`.
 - **💡:** `position: absolute;` on `doneButton` &rarr; not part of `display: flex;` anymore &rarr; now adjust the rest.
 
-![done button no push](/bugs/bug-images/done-button-no-push.png)
+![done button no push](bug-images/done-button-no-push.png)
 ---
 
 ### **`CSS`** - adjusted boxes have erratic behavior despite the settings
 - **🐛:** Clouds are above the input field.
 - **🔍:** `display: flex;`-configs manipulate uncontrolled
 - **🔧:** use `border: _px solid _rgb` to understand the positions &rarr; fix.
-<br>![done button no push](/bugs/bug-images/use-border.png)</br>
+<br>![done button no push](bug-images/use-border.png)</br>
 
 - **💡:** `display: flex` &rarr; `justify-content` and `align-items`, use `top`, `bottom`, `right`, `left`
 
@@ -153,7 +153,7 @@ thoughtTextCloud.textContent = thoughtInput.value;
 
 - **🐛**: Crash on emotions.html when rebuilding clouds.
 
-![Cannot read prperties of null](/bugs/bug-images/read-properties-of-null.png)
+![Cannot read prperties of null](bug-images/read-properties-of-null.png)
 
 - **🔍**: `thoughtsContainer` is null, because it only exists on thoughts.html &rarr; Cannot read `appendChild` of null
 ```JS 
@@ -176,7 +176,7 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 
 - **🐛**: Hovering the readyButton spawned more and more particles each time I pressed Enter &rarr; +20, +40, +60...
 
-![Sparkle particles stacked](/bugs/bug-images/particles-stacked.png)
+![Sparkle particles stacked](bug-images/particles-stacked.png)
 
 - **🔍**: `sparkleEffect()` was called inside `keydown`, in the `if (inputCounter === MAX_THOUGHTS)` block. Once the counter hit MAX, that block stayed true, so every following Enter ran `sparkleEffect()` again, and each call adds a NEW `mouseenter` listener. More listeners = more intervals = stacking particles.
 - **🔧**: Created a flag `sparkleEffectSwitch = true;` which changes to `sparkleEffectSwitch = false;` after `sparkleEffect()` was called OR just load it once in init() (then no risk to manage, maybe better one) BUT it's much more code an more complicated!
@@ -200,14 +200,14 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 - **🔧**: On mousedown, measure how far INSIDE the cloud I clicked, using`getBoundingClientRect()` (gives the cloud's corner position on screen): offsetX = event.clientX - rect.left offsetY = event.clientY - rect.top Then on mousemove, place the cloud at (mouse - offset) so the cursor stays on the exact spot I grabbed.
 - **💡**: client = mouse from screen edge. rect = cloud from screen edge. offset = the gap between them = how deep I grabbed. Subtract it back while moving. 
 
-![drag offset with clientx clienty](/bugs/bug-images/drag-offset-with-clientx-clienty.png)
+![drag offset with clientx clienty](bug-images/drag-offset-with-clientx-clienty.png)
 
 ## 2026-06-29
 ### **`CSS`** - Clouds shrink at the right edge
 
 - **🐛**: Dragging a cloud toward the right edge made it squish narrower. Left side stayed full size.
 
-![clouds shrink at right edge](/bugs/bug-images/clouds-shrink-at-right-edge.png)
+![clouds shrink at right edge](bug-images/clouds-shrink-at-right-edge.png)
 
 - **🔍**: `.thought-cloud` had only `max-width: 400px`, no fixed `width`. `max-width` is a ceiling, not a fixed size, so an `absolute` + shrink-to-fit element squeezes to fit the space left before the edge.
 - **🔧**: Gave the emotion clouds a fixed `width: 400px` (scoped to `.screen-3-emotions .thought-cloud`). Now they can't shrink, they run past the edge instead (overflow clips it cleanly).
@@ -219,7 +219,7 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 
 - **🐛**: Cloud snapped to the right spot fullscreen but wrong spot when the window was smaller.
 
-![snap broke in windowed mode](/bugs/bug-images/snap-broke-in-windowed-mode.png)
+![snap broke in windowed mode](bug-images/snap-broke-in-windowed-mode.png)
 
 - **🔍**: `getBoundingClientRect()` gives viewport coords, but `position: absolute` + `style.left` placed the cloud relative to the page. The two frames drift apart when the window changes.
 - **🔧**: Centered the cloud with `left: 50%; top: 50%; transform: translate(-50%,-50%)`, the SAME way the zone centers itself in CSS. Matching method = always agree, any window size.
@@ -246,7 +246,7 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 
 - **🐛**: Every empty click on the page &rarr; 4x console error:
 
-![uncaught TypeError null style](/bugs/bug-images/uncaught-typeerror-null-style.png)
+![uncaught TypeError null style](bug-images/uncaught-typeerror-null-style.png)
 
 - **🔍**: `activeCloud.style.cursor` ran on every mouseup, but before the first grap, `activeCloud` is still `null`. That error appeared 4 times each click because `letGo("mouseup")` is called inside the loop &rarr; 4 laps = 4 stacked listeners on document. One click "rings all 4 bells"
 - **🔧**: Moved cursor line behind `if (!isDragging) return;`, no drag, no touch of the "note"
@@ -257,7 +257,7 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 
 - **🐛**: dragging an emotion into the left 1/4 of the screen &rarr; box stretches wide
 
-![emotion stretch](/bugs/bug-images/emotion-strecht.png)
+![emotion stretch](bug-images/emotion-strecht.png)
 
 - **🔍**: `positionObject` sets `right`, dragging sets `left` &rarr; box has BOTH anchors. no fixed width on `.emotion-Box` &rarr; browser stretches between left & right pin.
 - **🔧**: clear the anchor on grab &rarr; `activeObject.style.right = ""`
@@ -277,7 +277,7 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 
 - **🐛**: After snapping cloud #2, reset emotion boxes pulsed off-beat from each other
 
-![pulse off beat](/bugs/bug-gifs/pulse.off.beat.gif)
+![pulse off beat](bug-gifs/pulse.off.beat.gif)
 
 - **🔍**: Fix attempt `remove("pulse")` + `add("pulse")` back-to-back did nothing &rarr; browser batches style changes, sees "-1 + 1 = 0" never restarts
 - **🔧**: `remove("pulse")` &rarr; `getBoundingClientRect()` &rarr; `add("pulse")`
@@ -289,7 +289,7 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 
 - **🐛**: After refactoring thoughtsArray from strings to objects, every cloud on emotions.html showed the text `[object Object]`
 
-![object Object](/bugs/bug-images/object-Object.png)
+![object Object](bug-images/object-Object.png)
 
 - **🔍**: The rebuild loop passed `thoughtsArray[thoughtCounter]` (the whole object) into `createFloatingClouds`, which assigns it to `textContent`. `textContent` needs a string, given an object, JS auto-converts it, and an object's default string form is `"[object Object]"`. No error thrown: silent conversion, wrong display
 - **🔧**: Pass the "compartment", not the "box": `thoughtsArray[thoughtCounter].thought`
@@ -301,7 +301,7 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 
 - **🐛**: Release cloud faster than 1s after consuming emotion &rarr; cloud jumps up-left, after 1s: normal again.
 
-![object Object](/bugs/bug-gifs/release-jump.gif)
+![object Object](bug-gifs/release-jump.gif)
 
 - **🔍**: Three layers:
   - animationend closure used cloudInZone, already null on fast release &rarr; shiny never removed 
@@ -318,12 +318,12 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 
 - **🐛**: Medium-length thoughts looked way too small even though the cloud had free space
 
-![font size shrink aggressive](/bugs/bug-images/font-size-shrink-aggressive.png)
+![font size shrink aggressive](bug-images/font-size-shrink-aggressive.png)
 
 - **🔍**: Font-size formula shrank linearly per character `size = 4 - length * 0.065`
 - **🔧**: Shrink by `Math.sqrt(inputLength)` instead of raw length
 
-![font size shrink aggressive fix](/bugs/bug-images/font-size-shrink-aggressive-fix.png)
+![font size shrink aggressive fix](bug-images/font-size-shrink-aggressive-fix.png)
 
 - **💡**: Linear punishment per character over-shrinks anything that wraps
 
@@ -341,7 +341,7 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 
 - **🐛**: Dropped cloud lands in the wrong spot instead of the drop-zone center.
 
-![cloud-snaps-off-center](/bugs/bug-gifs/cloud-snaps-off-center.gif)
+![cloud-snaps-off-center](bug-gifs/cloud-snaps-off-center.gif)
 
 - **🔍**: `#thoughts-panel` is `position: absolute`, so it became the cloud's `offsetParent`. The centering code still divides `centerX/centerY` by `window.innerWidth/innerHeight`, producing a viewport-absolute `%` that then gets applied inside the panel. The drag code already measures against the panel, the centering code was never updated to match.
 - **🔧**: Convert the drop-zone center into panel-absolute coords before turning it into `%`:
@@ -357,7 +357,7 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 
 - **🐛**: Pie chart showed saved emotions with attached letter "X".
 
-![emotion name with X pie chart](/bugs/bug-images/emotion-name-with-X-pie-chart.png)
+![emotion name with X pie chart](bug-images/emotion-name-with-X-pie-chart.png)
 - **🔍**: `consumeEmotion()` read `.textContent` from the whole `.emotion-box`. After adding the remove button, the box held `<span>Happy</span>` + `<button>X</button>`, and `textContent` concatenates ALL descendants.
 - **🔧**: `eatEmotion.querySelector(".emotion-text").textContent` + cleared old localStorage.
 - **💡**: Adding a child element can silently break unrelated code that reads the parent. Always drill down to the exact element, never trust `textContent` on a container.
@@ -386,13 +386,13 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 
 - **🐛**: After clicking "Save", emotions could still be dropped on the cloud during its 1s consume animation, feeding a cloud that was already being removed caused the cloud snapped back into zone and the release/save button was hidden.
 
-![emotion drop during saving breaks save flow](/bugs/bug-gifs/emotion-drop-during-saving-breaks-save-flow.gif)
+![emotion drop during saving breaks save flow](bug-gifs/emotion-drop-during-saving-breaks-save-flow.gif)
 - **🔍**: `cloudInZone` is only set to null on `animationend`, so during the animation `dropObjectEmotion` still saw a valid cloud in the zone.
 - **🔧**: Added `isSaving` flag: set true on save click, false on `animationend`, guard `dropObjectEmotion` with `!isSaving`.
 - **💡**: One flag per state: `saveButtonOn` = "next click saves", `isSaving` = "save in progress". Race conditions need the in-between state marked explicitly.
 - **👀**: Same window, second failure: double clicking the release/save button nulls `cloudInZone` early, so `animationend` crashes on `.style`. Same fix: `if (isSaving) return;` in the click handler.
 
-![double click save crash](/bugs/bug-images/double-click-save-crash.png)
+![double click save crash](bug-images/double-click-save-crash.png)
 
 ## 2026-08-09
 ### **`JS`** - Duplicate document listeners after `recreateEmotions()`
