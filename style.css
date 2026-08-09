@@ -4,6 +4,7 @@ html,
 body {
   height: 100%;
   width: 100%;
+  
   overflow: hidden;
   user-select: none;
 }
@@ -11,12 +12,12 @@ body {
 body {
   margin: 0;
 
-  opacity: 0;
-  animation: fadeIn 2s ease forwards;
-
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
 }
 
 @keyframes fadeIn {
@@ -49,6 +50,8 @@ body {
 }
 
 #home-button {
+  cursor: pointer;
+
   display: flex;
   justify-content: center;
   margin-top: 5vh;
@@ -57,7 +60,6 @@ body {
   background: transparent;
   border: none;
 
-  cursor: pointer;
 
   transition: all 0.4s ease-in-out;
 }
@@ -72,12 +74,13 @@ body {
 }
 
 .menu-button {
-  padding: 0.5em 1em;
+  cursor: pointer;
+
   width: 20%;
   height: 30%;
+  padding: 0.5em 1em;
 
   font-size: 3vw;
-  overflow: hidden;
   color: white;
 
   border: none;
@@ -88,26 +91,25 @@ body {
       rgba(0, 225, 255, 0.6),
       rgba(0, 225, 255, 0.8));
 
-  cursor: pointer;
 
+  overflow: hidden;
   transition: all 0.25s ease;
 }
 
 .menu-button:hover {
-  transform: translateY(-2px);
-
   box-shadow:
     0 0 20px rgba(0, 225, 255, 0.8),
     0 0 35px rgba(0, 225, 255, 0.8);
 
+  transform: translateY(-2px);
   filter: brightness(1.1);
 }
 
 .menu-button:active {
-  transform: scale(0.85);
-
   box-shadow:
     0 0 25px rgba(0, 225, 255, 0.8);
+
+  transform: scale(0.85);
 }
 
 
@@ -121,14 +123,17 @@ body {
 
 
 .home-colored-button {
+  cursor: pointer;
+
   display: flex;
   align-self: center;
   margin-top: 4vh;
   margin-bottom: 10vh;
+
   background-color: transparent;
   border: none;
 
-  cursor: pointer;
+
   transition: all 0.35s ease-in-out;
 }
 
@@ -147,23 +152,24 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+
   gap: 5%;
 }
 
 #thought-counter {
   margin: 0;
   text-align: center;
+
   font-size: 10vh;
   width: 20vh;
 
   border-radius: 10%;
   padding: 0.75%;
 
+  color: rgba(255, 166, 251, 0.75);
   background:
     linear-gradient(rgba(245, 4, 253, 0.05), rgba(255, 65, 246, 0.025)),
     linear-gradient(45deg, rgba(255, 127, 80, 0), hwb(290 11% 0% / 0.3), rgba(236, 93, 255, 0.1));
-
-  color: rgba(255, 166, 251, 0.75);
 }
 
 #thought-counter.wobble {
@@ -193,25 +199,25 @@ body {
 }
 
 #thought-input {
-  font-size: 3.5vw;
-  color: rgba(255, 166, 251, 0.75);
-
   width: 50%;
   height: 80%;
 
   border-radius: 1vw;
+  font-size: 3.5vw;
+  color: rgba(255, 166, 251, 0.75);
+
   border: 0.5vw solid color-mix(in srgb, color-mix(in hsl, hsl(261, 100%, 65%) 20%, rgb(230, 104, 255) 80%) 20%, transparent);
   background:
     linear-gradient(rgba(245, 4, 253, 0.1), rgba(255, 65, 246, 0.05)) padding-box,
     linear-gradient(45deg, rgba(255, 127, 80, 0), hwb(290 11% 0% / 0.5), rgba(236, 93, 255, 0.2)) border-box;
 
   box-shadow: 10px 10px 2.5px rgba(204, 0, 255, 0.1);
-
   text-shadow: #cc49ff 1px 0 10px;
 }
 
 #thought-input::placeholder {
   color: rgba(255, 166, 251, 0.75);
+
   opacity: 1;
   transition: color 0.25s ease;
 }
@@ -230,37 +236,36 @@ body {
 }
 
 #add-thought-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   align-self: center;
+
+  border: none;
+  border-radius: 1vw;
+  padding: 20% 2.5%;
+
   width: 10vw;
   height: 15vh;
   font-size: 12vh;
 
   color: rgba(255, 166, 251, 0.75);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border: none;
-  border-radius: 1vw;
-
   background:
     linear-gradient(rgba(245, 4, 253, 0.05), rgba(255, 65, 246, 0.025)) padding-box,
     linear-gradient(45deg, rgba(255, 127, 80, 0), hwb(290 11% 0% / 0.3), rgba(236, 93, 255, 0.1)) border-box;
-
-  padding: 20% 2.5%;
 }
 
 #add-thought-button:hover {
+  cursor: pointer;
+
   color: rgba(222, 139, 255, 0.9);
   box-shadow:
     0 0 20px rgba(174, 0, 255, 0.8),
     0 0 35px rgba(255, 71, 230, 0.8);
 
-  filter: brightness(1.25);
-
   transform: translateY(-1px);
-  cursor: pointer;
+  filter: brightness(1.25);
 }
 
 #add-thought-button:active {
@@ -277,8 +282,8 @@ body {
 }
 
 /* effect both buttons that get sparkle effect */
-.sparkle-effect > button {
-  box-sizing: border-box;  
+.sparkle-effect>button {
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
 }
@@ -288,6 +293,7 @@ body {
   width: 5px;
   height: 5px;
   border-radius: 50%;
+
   pointer-events: none;
   animation: sparkle 1s ease-out forwards;
 }
@@ -342,6 +348,7 @@ body {
   width: 100%;
   height: auto;
   display: block;
+
   filter: drop-shadow(0 0 10px rgb(255, 255, 255)) hue-rotate(20deg);
   opacity: 80%;
 }
@@ -349,33 +356,35 @@ body {
 .cloud-text {
   text-align: left;
   word-break: break-word;
+
   width: 80%;
   font-size: 14cqw;
-  /* position set -> top, bottom, left, right does work now!*/
-  /* absolute -> Elemnt taken out of normal flow */
+  padding: 1em;
+
   position: absolute;
-  /* corner is in the middle of parent */
   top: 50%;
   left: 50%;
-  /* centreing elemtns in parent */
   transform: translate(-50%, -50%);
 
   color: rgba(255, 255, 255, 0.9);
   filter: drop-shadow(-1px 1.5px 1.5px rgba(253, 29, 216, 1));
-  padding: 1em;
 }
 
 .cloud-remove-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 5cqw;
-
-  border-radius: 15%;
-
   visibility: hidden;
 
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 10%;
+  height: 15%;
+
+  border-radius: 15%;
+
+  font-size: 5cqw;
+
   padding: 0;
   border: none;
 
@@ -383,16 +392,14 @@ body {
   top: 7.5%;
   left: 83.5%;
 
-  width: 10%;
-  height: 15%;
-
   background-color: rgba(255, 255, 255, 0.4);
-  color: rgba(245, 2, 253, 0.4)
+  color: rgba(245, 2, 253, 0.4);
+
 }
 
 .thought-cloud:hover .cloud-remove-button {
-  cursor: pointer;
   visibility: visible;
+  cursor: pointer;
 }
 
 .cloud-remove-button:hover {
@@ -401,21 +408,19 @@ body {
 }
 
 .cloud-remove-button:active {
-  transform: scale(0.85);  
+  transform: scale(0.85);
 }
 
 
 /* ========================= SCREEN 3 ========================= */
-/* This means: modify .home-purple-button -> but only when it's inside .screen-3-emotions */
-
 .screen-3-emotions {
   background-image: url("assets/images/ai-generated/thoughts-background.png");
 }
 
 .screen-3-emotions .thought-cloud {
-  position: absolute;
   cursor: grab;
-  /* max-width: 400px = "never wider than 400, but smaller is allowed" → it can shrink. width: 400px = "always exactly 400" → it can't shrink or grow. */
+
+  position: absolute;
   width: 20vw;
 }
 
@@ -424,8 +429,9 @@ body {
 }
 
 .screen-3-emotions .thought-cloud.active-cloud {
-  width: 30vw;
   margin: 0;
+  width: 30vw;
+
   pointer-events: none;
 }
 
@@ -434,16 +440,17 @@ body {
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;  
+  justify-content: flex-end;
   align-items: flex-start;
 
   height: 100vh;
-  width: 30vw;  
+  width: 30vw;
+
   font-size: 3vw;
 }
 
 #move-emotion-panel {
-  display: flex; 
+  display: flex;
   align-items: stretch;
   width: 80%;
   height: 7.5%;
@@ -457,7 +464,7 @@ body {
 }
 
 #emotions-input {
-box-sizing: border-box;
+  box-sizing: border-box;
   flex: 1 1 0;
   min-width: 0;
   width: auto;
@@ -474,8 +481,8 @@ box-sizing: border-box;
     linear-gradient(rgba(245, 4, 253, 0.1), rgba(255, 65, 246, 0.15)) padding-box,
     linear-gradient(45deg, rgba(255, 100, 247, 0.2), hwb(290 11% 0% / 0.4), rgba(236, 93, 255, 0.2)) border-box;
 
-  filter: drop-shadow(-2px 1px 5px rgb(255, 97, 255)) hue-rotate(50deg);
   text-shadow: #cc49ff 1px 0 10px;
+  filter: drop-shadow(-2px 1px 5px rgb(255, 97, 255)) hue-rotate(50deg);
 }
 
 #emotions-input::placeholder {
@@ -505,23 +512,24 @@ box-sizing: border-box;
   width: 4px;
   height: 4px;
   border-radius: 50%;
+
   pointer-events: none;
   animation: sparkle 2.5s ease-out forwards;
 }
 
 #add-emotion-button {
-  width: 100%;
-  height: 100%;
+  cursor: pointer;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
+  width: 100%;
+  height: 100%;
+
   font-size: 120%;
 
   color: rgba(255, 255, 255, 0.8);
-
-  cursor: pointer;
 
   border: 0.5vw solid color-mix(in srgb, color-mix(in hsl, hsl(261, 100%, 65%) 20%, rgb(230, 104, 255) 80%) 20%, transparent);
 
@@ -538,7 +546,7 @@ box-sizing: border-box;
 #add-emotion-button:hover {
   box-shadow:
     0 0 6px rgba(255, 20, 93, 0.7),
-    0 0 12px rgba(255, 89, 135, 0.5); 
+    0 0 12px rgba(255, 89, 135, 0.5);
 }
 
 #add-emotion-button:active {
@@ -546,7 +554,7 @@ box-sizing: border-box;
 }
 
 #emotions-container {
-  container-type: inline-size;  
+  container-type: inline-size;
   width: 90%;
   height: 60%;
 
@@ -556,27 +564,29 @@ box-sizing: border-box;
   transform: translateY(5%);
 
   z-index: 1000;
-} 
+}
 
 .emotion-box {
+  cursor: grab;
+
   position: absolute;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  cursor: grab;
-
-  border: solid 1px rgba(225, 0, 255, 0.5);
   min-width: 15%;
   height: 8.0%;
   border-radius: 10%;
   padding: 2% 1%;
 
+  border: solid 1px rgba(225, 0, 255, 0.5);
+
   color: rgb(255, 255, 255);
   background:
     linear-gradient(rgba(245, 4, 253, 0.1), rgba(255, 65, 246, 0.15)) padding-box,
     linear-gradient(45deg, rgba(255, 100, 247, 0.2), hwb(290 11% 0% / 0.4), rgba(236, 93, 255, 0.2)) border-box;
+
   filter: drop-shadow(-2px 1px 5px rgb(255, 97, 255)) hue-rotate(50deg);
 }
 
@@ -591,36 +601,36 @@ box-sizing: border-box;
   font-size: 3cqw;
 }
 
-.emotion-remove{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20%;
-
+.emotion-remove {
   visibility: hidden;
 
   box-sizing: border-box;
-  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 20%;
+  height: 25%;
   border: none;
+
+  padding: 0;
 
   position: absolute;
   top: 0%;
   left: 80%;
 
-  width: 20%;
-  height: 25%;
+  font-size: 20%;
 
   color: rgba(253, 253, 253, 0.65);
-
   background-color: rgba(255, 0, 234, 0.4);
-
 }
 
 .emotion-box:hover .emotion-remove {
-  filter: hue-rotate(-50deg);
-  
-  cursor: pointer;
   visibility: visible;
+
+  cursor: pointer;
+
+  filter: hue-rotate(-50deg);
 }
 
 .emotion-remove:hover {
@@ -629,7 +639,7 @@ box-sizing: border-box;
 }
 
 .emotion-remove:active {
-  transform: scale(0.85);  
+  transform: scale(0.85);
 }
 
 #drop-panel {
@@ -638,23 +648,24 @@ box-sizing: border-box;
   justify-content: flex-start;
   align-items: center;
 
+  height: 100vh;
+  width: fit-content;
+
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-
-  height: 100vh;
-  width: fit-content;
 }
 
 #cloud-drop-zone {
-  pointer-events: none;
   width: 30vw;
   height: 25vh;
   border-radius: 25%;
 
   border: 2px dashed rgba(155, 90, 155, 0.5);
-  background: linear-gradient(rgba(204, 0, 255, 0.178));
+  background-color: rgba(204, 0, 255, 0.178);
+
+  pointer-events: none;
 }
 
 #drop-text {
@@ -709,8 +720,8 @@ box-sizing: border-box;
 
   transform: translateY(-5px);
   filter: brightness(1.2);
-}
 
+}
 
 .pulse {
   animation: pulse 5s ease-in-out infinite;
@@ -730,6 +741,10 @@ box-sizing: border-box;
   }
 }
 
+.consumed {
+  animation: consumed 1s ease forwards;
+}
+
 @keyframes consumed {
   from {
     opacity: 1;
@@ -738,10 +753,6 @@ box-sizing: border-box;
   to {
     opacity: 0;
   }
-}
-
-.consumed {
-  animation: consumed 1s ease forwards;
 }
 
 .shiny {
@@ -775,19 +786,18 @@ box-sizing: border-box;
   flex-direction: column;
 }
 
-
 #chart-panel {
-  display: flex;
-
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 5vh;
+
+  display: flex;
 
   width: 80vw;
   height: 80vh;
   gap: 2vw;
 
-  font-size: 1.5vw; 
+  font-size: 1.5vw;
 }
 
 #select-list {
@@ -796,7 +806,7 @@ box-sizing: border-box;
   height: 15%;
   width: 30%;
 
-  font-size: 1.5em; 
+  font-size: 1.5em;
 
   border: 0.5vw solid color-mix(in srgb, color-mix(in hsl, hsl(261, 100%, 65%) 50%, rgb(230, 104, 255) 50%) 10%, transparent);
 
@@ -813,7 +823,7 @@ box-sizing: border-box;
 }
 
 #select-list option {
-  font-size: 1.0em; 
+  font-size: 1.0em;
   font-weight: 600;
 
   color: rgba(222, 139, 255, 0.9);
@@ -821,6 +831,8 @@ box-sizing: border-box;
 }
 
 #select-list:hover {
+  cursor: pointer;
+
   color: rgba(222, 139, 255, 1);
   box-shadow:
     0 0 10px rgba(174, 0, 255, 0.8),
@@ -828,21 +840,22 @@ box-sizing: border-box;
 
   filter: brightness(1.25);
   transform: translateY(-5px);
-  cursor: pointer;  
 }
 
 #select-list:focus {
-  outline: none;  
+  outline: none;
 }
 
 #bar-chart-empty {
-  display: none;
-  color: rgba(255, 255, 255, 0.85);
-  text-align: center;
-
-  font-size: 500%;
   margin-top: 0;
+  display: none;
+
+  color: rgba(255, 255, 255, 0.85);
+
+  text-align: center;
+  font-size: 500%;
 }
+
 #bar-chart-style {
   height: 80%;
   width: 80%;
@@ -855,5 +868,3 @@ box-sizing: border-box;
 #bar-chart-style:hover {
   cursor: pointer;
 }
-
-
