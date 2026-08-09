@@ -31,7 +31,6 @@ let savedThoughtsAndEmotions = [];
 const consumedEmotion = [];
 
 
-
 // Start position -> clouds
 const CLOUD_TOP_SPACING = 0;
 const CLOUD_LEFT_SPACING = 15;
@@ -516,11 +515,9 @@ function pressObject(on, rawObject) {
     const rectEmotionsContainer = emotionsContainer.getBoundingClientRect();
     const rectThoughtsPanel = cloudsContainer.getBoundingClientRect();
 
-    const pointX = event.touches ? event.touches[0].clientX : event.clientX;
-    const pointY = event.touches ? event.touches[0].clientY : event.clientY;
-
-    offsetX = pointX - rectObject.left;
-    offsetY = pointY - rectObject.top;
+    const point = getPoint(event);
+    offsetX = point.x - rectObject.left;
+    offsetY = point.y - rectObject.top;
 
     offsetXEmotionsContainer = rectEmotionsContainer.left;
     offsetYEmotionsContainer = rectEmotionsContainer.top;
@@ -534,17 +531,15 @@ function moveObject(move) {
   document.addEventListener(move, (event) => {
     if (!isDragging) return;
 
-    const pointX = event.touches ? event.touches[0].clientX : event.clientX;
-    const pointY = event.touches ? event.touches[0].clientY : event.clientY;
-
+    const point = getPoint(event);
     if (activeObject.classList.contains("emotion-box")) {
       const rectEmotionsContainer = emotionsContainer.getBoundingClientRect();
-      activeObject.style.left = ((pointX - offsetX - offsetXEmotionsContainer) / rectEmotionsContainer.width) * 100 + "%";
-      activeObject.style.top = ((pointY - offsetY - offsetYEmotionsContainer) / rectEmotionsContainer.height) * 100 + "%";
+      activeObject.style.left = ((point.x - offsetX - offsetXEmotionsContainer) / rectEmotionsContainer.width) * 100 + "%";
+      activeObject.style.top = ((point.y - offsetY - offsetYEmotionsContainer) / rectEmotionsContainer.height) * 100 + "%";
     } else {
       const rectThoughtsPanel = cloudsContainer.getBoundingClientRect();
-      activeObject.style.left = ((pointX - offsetX - offsetXThoughtsPanel) / rectThoughtsPanel.width) * 100 + "%";
-      activeObject.style.top = ((pointY - offsetY - offsetYThoughtsPanel) / rectThoughtsPanel.height) * 100 + "%";
+      activeObject.style.left = ((point.x - offsetX - offsetXThoughtsPanel) / rectThoughtsPanel.width) * 100 + "%";
+      activeObject.style.top = ((point.y - offsetY - offsetYThoughtsPanel) / rectThoughtsPanel.height) * 100 + "%";
     }
   })
 }
@@ -602,28 +597,7 @@ function dropObjectCloud(offCloud, dropZone, releaseButton, activeClass) {
         }
       }
     }
-
-    const zoneRect = dropZone.getBoundingClientRect();
-    if (event.touches) {
-      let fingerIsInZone =
-        // touches doesn't work, because finger is already lifted -> undef. Use changedTouches meowww
-        event.changedTouches[0].clientX > zoneRect.left &&
-        event.changedTouches[0].clientX < zoneRect.right &&
-        event.changedTouches[0].clientY > zoneRect.top &&
-        event.changedTouches[0].clientY < zoneRect.bottom
-
-      invadeZoneCloud(fingerIsInZone);
-    } else {
-      let mouseIsInZone =
-        // is the mouse inside the box?
-        // Start top-left corner (0,0) -> Screens draw pixels starting from top-left!!!
-        event.clientX > zoneRect.left &&
-        event.clientX < zoneRect.right &&
-        event.clientY > zoneRect.top &&
-        event.clientY < zoneRect.bottom
-
-      invadeZoneCloud(mouseIsInZone);
-    }
+    invadeZoneCloud(isInZone(getPoint(event), dropZone));
   })
 }
 function dropObjectEmotion(offEmotion) {
@@ -634,25 +608,7 @@ function dropObjectEmotion(offEmotion) {
     activeObject.style.cursor = "grab"
 
     if (cloudInZone && !isSaving) {
-      const zoneRect = document.getElementById("cloud-drop-zone").getBoundingClientRect();
-
-      if (event.touches) {
-        let fingerIsInZone =
-          event.changedTouches[0].clientX > zoneRect.left &&
-          event.changedTouches[0].clientX < zoneRect.right &&
-          event.changedTouches[0].clientY > zoneRect.top &&
-          event.changedTouches[0].clientY < zoneRect.bottom
-
-        if (fingerIsInZone) consumeEmotion();
-      } else {
-        let mouseIsInZone =
-          event.clientX > zoneRect.left &&
-          event.clientX < zoneRect.right &&
-          event.clientY > zoneRect.top &&
-          event.clientY < zoneRect.bottom
-
-        if (mouseIsInZone) consumeEmotion();
-      }
+      if (isInZone(getPoint(event), cloudDropZone)) consumeEmotion();
     }
   })
 }
@@ -772,6 +728,18 @@ function reflowAnimation(target, animationClass) {
   elements[0].getBoundingClientRect();
   elements.forEach(el => el.classList.add(animationClass));
 }
+function getPoint(event) {
+  const touch = event.touches?.[0] || event.changedTouches?.[0];
+  if (touch) return { x: touch.clientX, y: touch.clientY };
+  return { x: event.clientX, y: event.clientY };
+}
+function isInZone(point, zone) {
+  const zoneRect = zone.getBoundingClientRect();
+  return point.x > zoneRect.left &&
+    point.x < zoneRect.right &&
+    point.y > zoneRect.top &&
+    point.y < zoneRect.bottom;
+}
 
 // ----------------------------------- INITIALIZE ----------------------------------- //
 function init() {
@@ -781,7 +749,7 @@ function init() {
   // Page feature
   featureThoughts();
   thoughtsRecreateOnDocEmotions();
-  
+
   createEmotions();
   moveObject("mousemove");
   moveObject("touchmove");
