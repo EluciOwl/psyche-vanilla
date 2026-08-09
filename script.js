@@ -373,6 +373,15 @@ function barChart(days) {
     const labels = sorted.map(entry => entry[0]);
     const numbers = sorted.map(entry => entry[1]);
     const barChartElement = document.getElementById("bar-chart");
+    const emptyMessage = document.getElementById("bar-chart-empty");
+
+    if (labels.length === 0) {
+      barChartElement.style.display = "none";
+      emptyMessage.style.display = "block";
+      return;
+    }
+    barChartElement.style.display = "block";
+    emptyMessage.style.display = "none";
 
     const responsiveFont = () => Math.round(window.innerWidth * 0.015);
 

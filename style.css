@@ -803,7 +803,7 @@ box-sizing: border-box;
 }
 
 #select-list {
-  margin-top: 1.5%;
+  margin-top: 3.5%;
 
   height: 15%;
   width: 30%;
@@ -847,6 +847,14 @@ box-sizing: border-box;
   outline: none;  
 }
 
+#bar-chart-empty {
+  display: none;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+
+  font-size: 500%;
+  margin-top: 0;
+}
 #bar-chart-style {
   height: 80%;
   width: 80%;
