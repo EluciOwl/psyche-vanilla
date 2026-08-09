@@ -1,14 +1,20 @@
 # Bug Log - Project: Psyche
 
-### Symbols used:
-- 🐛 bug
-- 🔍 cause / examine
-- 🔧 fix
-- 💡 idea
-- 👀 thing to watch
-- ⚠️ warning / careful
-- ✅ correct
-- ❌ wrong
+<details>
+<summary>Symbols used</summary>
+
+| | Meaning |
+|---|---|
+| 🐛 | bug |
+| 🔍 | cause / examine |
+| 🔧 | fix |
+| 💡 | idea |
+| 👀 | thing to watch |
+| ⚠️ | warning / careful |
+| ✅ | correct |
+| ❌ | wrong |
+
+</details>
 
 ## 2026-06-20
 ### **`CSS`** - Clouds overflow
