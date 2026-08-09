@@ -212,9 +212,6 @@ function thoughtsRecreateOnDocEmotions() {
       pressObject("mousedown", cloud);
       pressObject("touchstart", cloud);
     }
-    moveObject("mousemove");
-    moveObject("touchmove");
-
     dropObjectCloud("mouseup", cloudDropZone, cloudMoveButton, "active-cloud");
     dropObjectCloud("touchend", cloudDropZone, cloudMoveButton, "active-cloud");
   }
@@ -275,7 +272,6 @@ function cloudsSyncAnimation(scope) {
   reflowAnimation(clouds, "float-cloud");
 }
 function createEmotions() {
-
   // Set start position
   let EMOTION_LEFT_SPACING = 0;
   const EMOTION_TOP_SPACING = 5;
@@ -338,11 +334,6 @@ function createEmotions() {
         pressObject("touchstart", emotionBox);
       }
     }
-    moveObject("mousemove");
-    moveObject("touchmove");
-
-    dropObjectEmotion("mouseup");
-    dropObjectEmotion("touchend");
   }
 }
 function barChart(days) {
@@ -790,7 +781,13 @@ function init() {
   // Page feature
   featureThoughts();
   thoughtsRecreateOnDocEmotions();
+  
   createEmotions();
+  moveObject("mousemove");
+  moveObject("touchmove");
+  dropObjectEmotion("mouseup");
+  dropObjectEmotion("touchend");
+
   updateEmotion();
   barChart(DEFAULT_CUTOFF);
   barRangeChart();

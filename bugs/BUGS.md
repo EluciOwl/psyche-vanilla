@@ -394,3 +394,10 @@ createFloatingClouds(thoughtsArray[thoughtsNumber], thoughtsCollectedContainer);
 
 ![double click save crash](/bugs/bug-images/double-click-save-crash.png)
 
+## 2026-08-09
+### **`JS`** - Duplicate document listeners after `recreateEmotions()`
+
+- **🐛**: Every add or remove of an emotion stacked another set of `mousemove`/`touchmove`/`mouseup`/`touchend` listeners on `document`. Nothing visibly broke, dragging just ran the same handler N times per event.
+- **🔍**: `moveObject()` and `dropObjectEmotion()` were registered at the end of `createEmotions()`. `recreateEmotions()` calls `createEmotions()` again, but listeners on `document` are never removed with the boxes, so they piled up.
+- **🔧**: Moved the four registration calls out of `createEmotions()` into `init()`, so they run exactly once per page load.
+- **💡**: Removing a DOM element removes its own listeners, but not the ones you attached to `document`. Anything registered on `document` belongs in setup code, never in a function that can run more than once.
