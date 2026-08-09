@@ -407,15 +407,10 @@ function barChart(days) {
 
         animations: {
           x: {
-            duration: 1200,
+            duration: 900,
             easing: "easeOutQuad",
-            from: (context) => context.chart.scales.x.getPixelForValue(0)
-          },
-
-          y: {
-            duration: 1200,
-            easing: "easeOutQuad",
-            from: (context) => context.chart.scales.y.getPixelForValue(0)
+            from: (context) => context.chart.scales.x.getPixelForValue(0),
+            delay: (context) => context.dataIndex * 450
           }
         },
 
