@@ -2,7 +2,7 @@
 
 ![Psyche demo](assets/images/demo/demo.gif)  
 
-[![Live Demo](https://img.shields.io/badge/🌙_live_demo-try_it_now-d946ef?style=for-the-badge&labelColor=1c1c1c)](https://elucicowl.github.io/psyche-vanilla/)  
+[![Live Demo](https://img.shields.io/badge/🌙_live_demo-try_it_now-d946ef?style=for-the-badge&labelColor=1c1c1c)](https://eluciowl.github.io/psyche-vanilla/)  
 
 **A calm space to face your own thoughts.**  
 
